@@ -1,0 +1,53 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block meta%}
+
+<link rel="stylesheet" href="{%static 'css/tebak_surat.css'%}">
+
+{%endblock meta%}
+
+{%block content%}
+<div class="wrapper d-flex flex-column justify-content-center">
+  <div class="container">
+    <div class="row d-flex justify-content-center mb-4">
+      <h1 class="poppins text-white">Tebak Surat</h1>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text start" for="inputGroupSelect01">Start</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect01">
+          <option selected>Choose...</option>
+          <!-- <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option> -->
+        </select>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <label class="input-group-text start" for="inputGroupSelect01">End</label>
+        </div>
+        <select class="custom-select" id="inputGroupSelect02">
+          <option selected>Choose...</option>
+          <!-- <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option> -->
+        </select>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center mt-4 coba">
+      <button type="button" class="btn btn-light button-tebak">Mulai tebak</button>
+    </div>
+    
+  </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script src="{%static 'js/tebak_surat.js'%}"></script>
+{%endblock content%}
