@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block meta%}
+<link rel="stylesheet" type="text/css" href="{%static 'landing.css'%}">
+{%endblock meta%}
+
+
+{%block content%}
+<div class="wrapper d-flex flex-column justify-content-center">
+	<div class="container d-flex flex-column align-items-center">
+		<div class="row">
+			<div class="col-sm-12 d-flex justify-content-center" style="margin-top: -5vh;">
+				<h1>
+				<span style="font-size: 35px" class="go">Go</span><span style="font-size: 35px" class="mur">Muroja'ah.</span>
+			</h1>
+			</div>
+		</div>
+		<div class="row mt-5 d-flex justify-content-center">
+			<div class="col-lg-3 d-flex justify-content-center">
+				<a href="/tebakAyat" type=button class="btn btn-light">Tebak Ayat</a>
+			</div>
+			<div class="col-lg-3 d-flex justify-content-center">
+				<a href="/sambungAyat" type=button class="btn btn-light last-button">Sambung Ayat</a>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+{%endblock content%}
