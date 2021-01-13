@@ -37,7 +37,8 @@ $(".button-tebak").click(() => {
 			}
 			let arabTerpilih = event.data.verses[ayatTerpilih-1].text.arab;
 			let audioTerpilih = event.data.verses[ayatTerpilih-1].audio.primary
-			let suratTerpilih = event.data.name.transliteration.id
+			let suratTerpilih = event.data.name.transliteration.id;
+			let banyakAyat = event.data.numberOfVerses;
 
 			for (let i=0; i<3; i++) {
 				$(".wrapper .container").children().last().remove();
@@ -54,22 +55,22 @@ $(".button-tebak").click(() => {
 			if (ayatTerpilih%2 === 0) {
 				$(".wrapper .container").append(
 					`<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih}: ${ayatTerpilih}</button>
-					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih}: ${ayatKedua}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih} dari ${banyakAyat}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua} dari ${banyakAyat} </button>
 					</div>`
 				  );
 			} else {
 					$(".wrapper .container").append(
 					`<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih}: ${ayatKedua}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua} dari ${banyakAyat}</button>
 					
-					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih}: ${ayatTerpilih}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih} dari ${banyakAyat}</button>
 					</div>
 					`
 				  );
 			}
 			$(document).on('click','.btn-secondary', function(button) {
-				let jawaban = button.target.innerHTML.split(" ")[1];
+				let jawaban = button.target.innerHTML.split(" ")[2];
 				console.log(jawaban);
 				console.log(ayatTerpilih)
 				for (let i=0; i<2; i++) {
@@ -113,6 +114,7 @@ function ajaxCall(start,end,suratTerpilih) {
 			let arabTerpilih = event.data.verses[ayatTerpilih-1].text.arab;
 			let audioTerpilih = event.data.verses[ayatTerpilih-1].audio.primary;
 			let suratTerpilih = event.data.name.transliteration.id;
+			let banyakAyat = event.data.numberOfVerses;
 
 			// for (let i=0; i<3; i++) {
 			// 	$(".wrapper .container").children().last().remove();
@@ -129,24 +131,22 @@ function ajaxCall(start,end,suratTerpilih) {
 			if (ayatTerpilih%2 === 0) {
 				$(".wrapper .container").append(
 					`<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih}: ${ayatTerpilih}</button>
-					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih}: ${ayatKedua}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih} dari ${banyakAyat}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua} dari ${banyakAyat}</button>
 					</div>`
 				  );
 			} else {
 					$(".wrapper .container").append(
 					`<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih}: ${ayatKedua}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua} dari ${banyakAyat}</button>
 					
-					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih}: ${ayatTerpilih}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih} dari ${banyakAyat}</button>
 					</div>
 					`
 				  );
 			}
 			$(document).on('click','.btn-secondary', function(button) {
-				let jawaban = button.target.innerHTML.split(" ")[1];
-				console.log(jawaban);
-				console.log(ayatTerpilih)
+				let jawaban = button.target.innerHTML.split(" ")[2];
 					$(".wrapper .container").children().last().remove();
 				if (jawaban == ayatTerpilih) {
 					$(".wrapper .container").append(
