@@ -8,10 +8,9 @@ body {
 
 body {
 	/*background-image: url("img/background.jpg");*/
-	background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(11, 10, 10, 0.203125) 0.01%, rgba(98, 98, 98, 0.429973) 0.02%, #242424 100%), url("./background.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
+	/*background-repeat: no-repeat;*/
+	/*background-size: cover;*/
+	/*background-attachment: fixed;*/
 }
 
 .go {
@@ -40,6 +39,6 @@ body {
   	font-size: 25px;
   }
   .nav-link {
-  	font-size: 20px;
+  	font-size: 
   }
 }
