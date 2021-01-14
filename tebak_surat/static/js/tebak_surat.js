@@ -49,7 +49,6 @@ $(".button-tebak").click(() => {
 			while (suratKedua === indexSurat) {
 				suratKedua = getRandom(start, end);
 			}
-			// console.log(nama_surat(1));
 			let audioTerpilih = event.data.verses[ayatTerpilih-1].audio.primary
 			let suratTerpilih = event.data.name.transliteration.id;
 			let namaSuratKedua = nama_surat(suratKedua);
@@ -86,8 +85,7 @@ $(".button-tebak").click(() => {
 			}
 			$(document).on('click','.btn-secondary', function(button) {
 				let jawaban = button.target.innerHTML;
-				// console.log(jawaban);
-				// console.log(ayatTerpilih)
+
 				for (let i=0; i<2; i++) {
 					$(".wrapper .container").children().last().remove();
 				}
@@ -131,10 +129,6 @@ function ajaxCall(start,end,suratTerpilih) {
 			let audioTerpilih = event.data.verses[ayatTerpilih-1].audio.primary
 			let suratTerpilih = event.data.name.transliteration.id;
 			let namaSuratKedua = nama_surat(suratKedua);
-
-			// for (let i=0; i<3; i++) {
-			// 	$(".wrapper .container").children().last().remove();
-			// }
 
 			$(".wrapper .container").append(`
 				<div class="row d-flex flex-row justify-content-center">

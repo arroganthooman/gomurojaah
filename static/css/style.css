@@ -6,13 +6,6 @@ body {
   font-family: 'Rubik', sans-serif;
 }
 
-body {
-	/*background-image: url("img/background.jpg");*/
-	/*background-repeat: no-repeat;*/
-	/*background-size: cover;*/
-	/*background-attachment: fixed;*/
-}
-
 .go {
 	font-family: 'Poppins', sans-serif;
 	font-size: 40px;
@@ -29,7 +22,7 @@ body {
 
 .nav-item-style {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 30px;
+	font-size: 27px;
 	font-weight: 700;
 	color:#FFFFFF !important;
 }
@@ -40,5 +33,9 @@ body {
   }
   .nav-link {
   	font-size: 
+  }
+
+  .nav-item-style {
+  	font-size: 20px;
   }
 }

@@ -28,6 +28,7 @@ $(".button-tebak").click(() => {
 
 	$.ajax({
 		url:`https://api.quran.sutanlab.id/surah/${suratTerpilih+1}`,
+		async:false,
 		success: (event) => {
 
 			ayatTerpilih = getRandom(1,event.data.numberOfVerses);
@@ -71,8 +72,6 @@ $(".button-tebak").click(() => {
 			}
 			$(document).on('click','.btn-secondary', function(button) {
 				let jawaban = button.target.innerHTML.split(" ")[2];
-				console.log(jawaban);
-				console.log(ayatTerpilih)
 				for (let i=0; i<2; i++) {
 					$(".wrapper .container").children().last().remove();
 				}
@@ -105,6 +104,7 @@ function ajaxCall(start,end,suratTerpilih) {
 	var nomorSurat = suratTerpilih;
 	$.ajax({
 		url:`https://api.quran.sutanlab.id/surah/${suratTerpilih+1}`,
+		async:false,
 		success: (event) => {
 			ayatTerpilih = getRandom(1,event.data.numberOfVerses);
 			let ayatKedua = getRandom(1,event.data.numberOfVerses);
@@ -116,9 +116,6 @@ function ajaxCall(start,end,suratTerpilih) {
 			let suratTerpilih = event.data.name.transliteration.id;
 			let banyakAyat = event.data.numberOfVerses;
 
-			// for (let i=0; i<3; i++) {
-			// 	$(".wrapper .container").children().last().remove();
-			// }
 
 			$(".wrapper .container").append(`
 				<div class="row d-flex flex-row justify-content-center">

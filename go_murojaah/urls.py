@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('landing_page.urls')),
     path('tebakAyat/', include("tebak_ayat.urls")),
-    path('tebakSurat/', include("tebak_surat.urls"))
+    path('tebakSurat/', include("tebak_surat.urls")),
+    path('sambungAyat/', include("sambung_ayat.urls"))
 ]
