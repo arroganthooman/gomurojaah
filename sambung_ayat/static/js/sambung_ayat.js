@@ -49,7 +49,7 @@ function generateAyat(idxSurat) {
 }
 
 function generateAudio(idxSurat, ayat) {
-	var temp;
+	let temp;
 	$.ajax({
 		url:`https://api.quran.sutanlab.id/surah/${idxSurat+1}/${ayat+1}`,
 		async:false,
@@ -59,6 +59,19 @@ function generateAudio(idxSurat, ayat) {
 			  <source src="${event.data.audio.primary}" type="audio/mpeg">
 			Your browser does not support the audio element.
 			</audio>`
+		}
+	})
+	return temp;
+}
+
+const generateArab = (idxSurat, ayat) => {
+	let temp;
+	$.ajax({
+		url:`https://api.quran.sutanlab.id/surah/${idxSurat+1}/${ayat+1}`,
+		async:false,
+		success:(event) => {
+			let style = "background-color:white;color:black; font-size:25px; margin-top:20px; text-align:right;";
+			temp = `<p dir="rtl" lang="ar" style=${style}>${event.data.text.arab}</p>`
 		}
 	})
 	return temp;
@@ -85,8 +98,10 @@ $(".button-tebak").click(() => {
 
 	var audioTerpilih = generateAudio(idxSuratTerpilih, ayatTerpilih-1);
 	var audioTerpilihJawaban = generateAudio(idxSuratTerpilih, ayatTerpilih);
+	var arabJawaban = generateArab(idxSuratTerpilih, ayatTerpilih);
 
 	var audioKedua = generateAudio(idxSuratKedua, ayatKedua-1);
+	var arabKedua = generateArab(idxSuratKedua, ayatKedua-1)
 	for (let i=0; i<3; i++) {
 		$(".wrapper .container").children().last().remove();
 	}
@@ -94,15 +109,19 @@ $(".button-tebak").click(() => {
 	$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center"> ${audioTerpilih} </div>`);
 
 	if (ayatTerpilih %2 == 0) {
-		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-5"> ${generateButton("A",1)} ${audioTerpilihJawaban} </div>`);
-		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${generateButton("B",0)} ${audioKedua} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${generateButton("A",1)} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${arabJawaban} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${generateButton("B",0)} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${arabKedua} </div>`);
 	} else {
-		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-5"> ${generateButton("A",0)} ${audioKedua} </div>`);
-		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${generateButton("B",1)} ${audioTerpilihJawaban} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${generateButton("A",0)} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${arabKedua} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${generateButton("B",1)} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${arabJawaban} </div>`);
 	}
 
 	$(document).on('click',".jawaban", function (button) {
-		for (let i = 0; i < 3; i++) {
+		for (let i = 0; i < 5; i++) {
 			$(".wrapper .container").children().last().remove();
 		}
 
@@ -118,9 +137,6 @@ $(".button-tebak").click(() => {
 		});
 	})
 })
-
-
-
 
 
 function ajaxCall(start,end) {
@@ -139,14 +155,21 @@ function ajaxCall(start,end) {
 
 	let audioKedua = generateAudio(idxSuratKedua, ayatKedua-1);
 
+	var arabJawaban = generateArab(idxSuratTerpilih, ayatTerpilih);
+	var arabKedua = generateArab(idxSuratKedua, ayatKedua-1)
+
 	$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center"> ${audioTerpilih} </div>`);
 
-	if (ayatTerpilih % 2 == 0) {
-		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-5"> ${generateButton("A",1)} ${audioTerpilihJawaban} </div>`);
-		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${generateButton("B",0)} ${audioKedua} </div>`);
+	if (ayatTerpilih %2 == 0) {
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${generateButton("A",1)} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${arabJawaban} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${generateButton("B",0)} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${arabKedua} </div>`);
 	} else {
-		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-5"> ${generateButton("A",0)} ${audioKedua} </div>`);
-		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${generateButton("B",1)} ${audioTerpilihJawaban} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${generateButton("A",0)} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${arabKedua} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${generateButton("B",1)} </div>`);
+		$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center mt-3"> ${arabJawaban} </div>`);
 	}
 
 	$(document).on('click',".jawaban", function (button) {

@@ -22,7 +22,6 @@
 }
 
 .btn-light, .btn-light:focus {
-	/*width:15vw;*/
 	width: 250px;
 	border-radius: 100px;
 	font-size: 25px;
@@ -38,13 +37,13 @@
 }
 
 .button-pilih {
-	font-size: 25px;
+	font-size: 20px;
 	width: 250px;
 	border-radius: 100px;
-	font-size: 25px;
 	border-color: white;
 	background-color: white;
 	color:black;
+	margin-top: 30px !important;
 }
 
 .button-pilih:hover {

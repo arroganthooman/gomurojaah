@@ -2,7 +2,6 @@ $(document).ready(() => {
 	$.ajax({
 		url:'https://api.quran.sutanlab.id/surah',
 		success: (event) => {
-			// console.log(JSON.parse(event).data.length);
 			event = JSON.parse(event);
 			for (let i=0; i<event.data.length; i++) {
 				$(".custom-select").append(
@@ -17,6 +16,7 @@ function getRandom(min, max) {
     max = Math.floor(max); 
     return Math.floor(Math.random() * (max - min + 1)) + min; 
 }
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -55,18 +55,49 @@ $(".button-tebak").click(() => {
 			</audio>
 			</div>`)
 
-			if (ayatTerpilih%2 === 0) {
+			if (ayatTerpilih % 4 === 0) {
 				$(".wrapper .container").append(
 					`<div class="row d-flex flex-row justify-content-center">
 					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih} dari ${banyakAyat}</button>
 					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua} dari ${banyakAyat} </button>
+					</div>
+					<div class="row d-flex flex-row justify-content-center">
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih+1} dari ${banyakAyat}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua+1} dari ${banyakAyat} </button>
 					</div>`
 				  );
-			} else {
+			} else if (ayatTerpilih % 4 === 1) {
 					$(".wrapper .container").append(
 					`<div class="row d-flex flex-row justify-content-center">
 					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua} dari ${banyakAyat}</button>
-					
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih} dari ${banyakAyat}</button>
+					</div>
+					<div class="row d-flex flex-row justify-content-center">
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua+1} dari ${banyakAyat}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih+1} dari ${banyakAyat}</button>
+					</div>
+					`
+				  );
+			}else if (ayatTerpilih % 4 === 2) {
+					$(".wrapper .container").append(
+					`<div class="row d-flex flex-row justify-content-center">
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua} dari ${banyakAyat}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih+1} dari ${banyakAyat}</button>
+					</div>
+					<div class="row d-flex flex-row justify-content-center">
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih} dari ${banyakAyat}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua+1} dari ${banyakAyat}</button>
+					</div>
+					`
+				  );
+			} else if (ayatTerpilih % 4 === 3) {
+					$(".wrapper .container").append(
+					`<div class="row d-flex flex-row justify-content-center">
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua} dari ${banyakAyat}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih+1} dari ${banyakAyat}</button>
+					</div>
+					<div class="row d-flex flex-row justify-content-center">
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua+1} dari ${banyakAyat}</button>
 					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih} dari ${banyakAyat}</button>
 					</div>
 					`
@@ -74,7 +105,7 @@ $(".button-tebak").click(() => {
 			}
 			$(document).on('click','.btn-secondary', function(button) {
 				let jawaban = button.target.innerHTML.split(" ")[2];
-				for (let i=0; i<2; i++) {
+				for (let i=0; i<3; i++) {
 					$(".wrapper .container").children().last().remove();
 				}
 				if (jawaban == ayatTerpilih) {
@@ -127,18 +158,49 @@ function ajaxCall(start,end,suratTerpilih) {
 			</audio>
 			</div>`)
 
-			if (ayatTerpilih%2 === 0) {
+			if (ayatTerpilih % 4 === 0) {
 				$(".wrapper .container").append(
 					`<div class="row d-flex flex-row justify-content-center">
 					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih} dari ${banyakAyat}</button>
-					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua} dari ${banyakAyat}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua} dari ${banyakAyat} </button>
+					</div>
+					<div class="row d-flex flex-row justify-content-center">
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih+1} dari ${banyakAyat}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua+1} dari ${banyakAyat} </button>
 					</div>`
 				  );
-			} else {
+			} else if (ayatTerpilih % 4 === 1) {
 					$(".wrapper .container").append(
 					`<div class="row d-flex flex-row justify-content-center">
 					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua} dari ${banyakAyat}</button>
-					
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih} dari ${banyakAyat}</button>
+					</div>
+					<div class="row d-flex flex-row justify-content-center">
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua+1} dari ${banyakAyat}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih+1} dari ${banyakAyat}</button>
+					</div>
+					`
+				  );
+			}else if (ayatTerpilih % 4 === 2) {
+					$(".wrapper .container").append(
+					`<div class="row d-flex flex-row justify-content-center">
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua} dari ${banyakAyat}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih+1} dari ${banyakAyat}</button>
+					</div>
+					<div class="row d-flex flex-row justify-content-center">
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih} dari ${banyakAyat}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua+1} dari ${banyakAyat}</button>
+					</div>
+					`
+				  );
+			} else if (ayatTerpilih % 4 === 3) {
+					$(".wrapper .container").append(
+					`<div class="row d-flex flex-row justify-content-center">
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua} dari ${banyakAyat}</button>
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih+1} dari ${banyakAyat}</button>
+					</div>
+					<div class="row d-flex flex-row justify-content-center">
+					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatKedua+1} dari ${banyakAyat}</button>
 					<button type="button" class="btn btn-secondary m-3 button-pilih">${suratTerpilih} ayat ${ayatTerpilih} dari ${banyakAyat}</button>
 					</div>
 					`
