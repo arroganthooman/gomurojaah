@@ -1,8 +1,8 @@
 $(document).ready(() => {
 	$.ajax({
-		url:'https://api.quran.sutanlab.id/surah',
+		url:'/api',
 		success: (event) => {
-			event = JSON.parse(event);
+			// event = JSON.parse(event);
 			for (let i=0; i<event.data.length; i++) {
 				$(".custom-select").append(
 					`<option value="${i}">${i+1}.${event.data[i].name.transliteration.id}</option>`);
