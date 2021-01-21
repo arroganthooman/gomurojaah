@@ -2,6 +2,7 @@ $(document).ready(() => {
 	$.ajax({
 		url:'https://api.quran.sutanlab.id/surah',
 		success: (event) => {
+			event = JSON.parse(event);
 			for (let i=0; i<event.data.length; i++) {
 				$(".custom-select").append(
 					`<option value="${i}">${i+1}.${event.data[i].name.transliteration.id}</option>`);
@@ -36,7 +37,7 @@ var nama_surat = (nomor) => {
 $(".button-tebak").click(() => {
 	var start = $("#inputGroupSelect01").val();
 	var end = $("#inputGroupSelect02").val();
-	if (start == end || start>end) return;
+	if (start == end || start>end) {return};
 	var suratTerpilih = getRandom(start, end);
 	var ayatTerpilih;
 
