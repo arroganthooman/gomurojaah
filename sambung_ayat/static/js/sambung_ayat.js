@@ -69,8 +69,7 @@ const generateArab = (idxSurat, ayat) => {
 		url:`https://api.quran.sutanlab.id/surah/${idxSurat+1}/${ayat+1}`,
 		async:false,
 		success:(event) => {
-			let style = "background-color:white;color:black; font-size:25px; margin-top:20px; text-align:right;";
-			temp = `<p dir="rtl" lang="ar" style=${style}>${event.data.text.arab}</p>`
+			temp = `<p dir="rtl" lang="ar" style="font-size:25px;font-family:'lpmq';background-color:black;color:white; font-size:25px; margin-top:20px; text-align:right;">${event.data.text.arab}</p>`
 		}
 	})
 	return temp;

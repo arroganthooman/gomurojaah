@@ -2,7 +2,6 @@ $(document).ready(() => {
 	$.ajax({
 		url:'/api',
 		success: (event) => {
-			// event = JSON.parse(event);
 			for (let i=0; i<event.data.length; i++) {
 				$(".custom-select").append(
 					`<option value="${i}">${i+1}. ${event.data[i].name.transliteration.id}</option>`);
@@ -33,22 +32,18 @@ const nama_surat = (nomor) => {
 	return nama;
 }
 
-// const generateArab = (indexSurat, indexAyat) => {
-// 	let res;
-// 	$.ajax({
-// 		url:`https://api.quran.sutanlab.id/surah/${indexSurat+1}/indexAyat`
-// 	})
-// }
-
 
 $(".button-tebak").click(() => {
 	var start = parseInt($("#inputGroupSelect01").val());
-	var end = parseInt($("#inputGroupSelect02").val());
-	console.log(start);
-	console.log(end);
+	var end = parseInt($("#inputGroupSelect02").val())
+
 	if (start === end || start>end || end-start < 3) {
-		console.log("ok");
-		return
+		if (start>end) {
+			alert("Format input terbalik");
+		} else {
+			alert("Start harus berjarak minimal 3 surat dengan end");
+		}
+		return;
 	};
 	var suratTerpilih = getRandom(start, end);
 	var ayatTerpilih;
@@ -88,7 +83,7 @@ $(".button-tebak").click(() => {
 
 			$(".wrapper .container").append(`
 				<div class="row d-flex flex-row justify-content-center mt-3"> 
-					<p dir="rtl" lang="ar" style="background-color:black; color:white;text-align:right">${arabTerpilih}</p> 
+					<p dir="rtl" lang="ar" style="font-size:25px;font-family:'lpmq';background-color:black; color:white;text-align:right">${arabTerpilih}</p> 
 				</div>
 				<div class="row d-flex flex-row justify-content-center">
 					<audio controls>
@@ -98,54 +93,19 @@ $(".button-tebak").click(() => {
 				</div>`  
 			)
 
-			if (ayatTerpilih%4 === 0) {
+			let arr = [namaSuratKedua, namaSuratKetiga, namaSuratKeempat];
+			ayatTerpilih = ayatTerpilih%4;
+			arr.splice(ayatTerpilih, 0, suratTerpilih);
+
+			for (let i=0; i<3; i+=2) {
 				$(".wrapper .container").append(
 					`<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${suratTerpilih}</button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKedua}</button>
-					</div>
-					<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKetiga}</button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKeempat}</button>
+					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${arr[i]}</button>
+					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${arr[i+1]}</button>
 					</div>`
 				  );
-			} else if (ayatTerpilih % 4 === 1) {
-					$(".wrapper .container").append(
-					`<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKedua} </button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${suratTerpilih}</button>
-					</div>
-					<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKetiga}</button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKeempat}</button>
-					</div>
-					`
-				  );
-			} else if (ayatTerpilih % 4 === 1) {
-				$(".wrapper .container").append(
-					`<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKedua} </button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKetiga}</button>
-					</div>
-					<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${suratTerpilih}</button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKeempat}</button>
-					</div>
-					`
-				  );
-			} else {
-				$(".wrapper .container").append(
-					`<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKedua} </button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKetiga}</button>
-					</div>
-					<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKeempat}</button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${suratTerpilih}</button>
-					</div>
-					`
-				  );
 			}
+
 			$(document).on('click','.btn-secondary', function(button) {
 				let jawaban = button.target.innerHTML;
 
@@ -153,7 +113,6 @@ $(".button-tebak").click(() => {
 					$(".wrapper .container").children().last().remove();
 				}
 
-				
 				if (jawaban == suratTerpilih) {
 					$(".wrapper .container").append(
 						`<div class="row d-flex justify-content-center">
@@ -166,10 +125,8 @@ $(".button-tebak").click(() => {
 				}
 
 				var nomorSurat = getRandom(start, end);
-				// console.log("ajax1");
 				sleep(2000).then(() => {
 					$(".wrapper .container").children().last().remove();
-					
 					ajaxCall(start,end,nomorSurat);
 				});
 				
@@ -211,9 +168,14 @@ function ajaxCall(start,end,suratTerpilih) {
 			let namaSuratKetiga = nama_surat(suratKetiga);
 			let namaSuratKeempat = nama_surat(suratKeempat);
 
+
+			let array = [namaSuratKedua, namaSuratKetiga, namaSuratKeempat];
+			ayatTerpilih = ayatTerpilih%4;
+			array.splice(ayatTerpilih, 0, suratTerpilih);
+
 			$(".wrapper .container").append(`
 				<div class="row d-flex flex-row justify-content-center mt-3"> 
-					<p dir="rtl" lang="ar" style="background-color:black; color:white;text-align:right">${arabTerpilih}</p> 
+					<p dir="rtl" lang="ar" style="font-size:25px;font-family:'lpmq';background-color:black; color:white;text-align:right">${arabTerpilih}</p> 
 				</div>
 				<div class="row d-flex flex-row justify-content-center">
 				<audio controls>
@@ -222,59 +184,18 @@ function ajaxCall(start,end,suratTerpilih) {
 			</audio>
 			</div>`)
 
-			if (ayatTerpilih%4 === 0) {
+			for (let i=0; i<3; i+=2) {
 				$(".wrapper .container").append(
 					`<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${suratTerpilih}</button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKedua}</button>
-					</div>
-					<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKetiga}</button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKeempat}</button>
+					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${array[i]}</button>
+					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${array[i+1]}</button>
 					</div>`
 				  );
-			} else if (ayatTerpilih % 4 === 1) {
-					$(".wrapper .container").append(
-					`<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKedua} </button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${suratTerpilih}</button>
-					</div>
-					<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKetiga}</button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKeempat}</button>
-					</div>
-					`
-				  );
-			} else if (ayatTerpilih % 4 === 2) {
-				$(".wrapper .container").append(
-					`<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKedua} </button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKetiga}</button>
-					</div>
-					<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${suratTerpilih}</button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKeempat}</button>
-					</div>
-					`
-				  );
-			} else {
-				$(".wrapper .container").append(
-					`<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKedua} </button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKetiga}</button>
-					</div>
-					<div class="row d-flex flex-row justify-content-center">
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${namaSuratKeempat}</button>
-					<button type="button" class="btn btn-secondary m-3 mt-4 button-pilih">${suratTerpilih}</button>
-					</div>
-					`
-				  );
 			}
+
 			$(document).on('click','.btn-secondary', function(button) {
 				let jawaban = button.target.innerHTML;
-					// for (let i =0; i< 3; i++){
-						$(".wrapper .container").children().last().remove();
-					// }
+				$(".wrapper .container").children().last().remove();
 				if (jawaban == suratTerpilih) {
 					$(".wrapper .container").append(
 						`<div class="row d-flex justify-content-center">

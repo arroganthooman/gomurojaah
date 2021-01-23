@@ -1,5 +1,5 @@
 .wrapper {
-	height: 80vh;
+	height: 90vh;
 }
 .poppins {
 	font-family: 'Poppins';
@@ -53,7 +53,7 @@
 }
 
 
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width:576px) {
   .input-group {
   	width:300px;
   }
@@ -64,4 +64,10 @@
   .btn-light, .btn-light:focus {
   	width:200px;
   }
+}
+
+@media only screen and (max-width:768px) {
+	.wrapper {
+		height: initial;
+	}
 }

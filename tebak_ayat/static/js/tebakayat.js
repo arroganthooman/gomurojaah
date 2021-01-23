@@ -24,7 +24,7 @@ function sleep(ms) {
 const generateArab = (ayat) => {
 	let temp;
 	let style = "";
-	temp = `<p dir="rtl" lang="ar" style="background-color:white;color:black; font-size:25px; margin-top:20px; text-align:right">${ayat}</p>`
+	temp = `<p dir="rtl" lang="ar" style="font-size:25px;font-family:'lpmq';background-color:black;color:white; font-size:25px; margin-top:20px; text-align:right">${ayat}</p>`
 		
 	return temp;
 }
