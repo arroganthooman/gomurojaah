@@ -21,6 +21,14 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+const generateArab = (ayat) => {
+	let temp;
+	let style = "";
+	temp = `<p dir="rtl" lang="ar" style="background-color:white;color:black; font-size:25px; margin-top:20px; text-align:right">${ayat}</p>`
+		
+	return temp;
+}
+
 
 $(".button-tebak").click(() => {
 	var start = $("#inputGroupSelect01").val();
@@ -46,6 +54,12 @@ $(".button-tebak").click(() => {
 			for (let i=0; i<3; i++) {
 				$(".wrapper .container").children().last().remove();
 			}
+
+
+			$(".wrapper .container").append(
+				`<div class="row d-flex flex-row justify-content-center">
+				${generateArab(arabTerpilih)}
+			</div>`);
 
 			$(".wrapper .container").append(`
 				<div class="row d-flex flex-row justify-content-center">
@@ -105,7 +119,7 @@ $(".button-tebak").click(() => {
 			}
 			$(document).on('click','.btn-secondary', function(button) {
 				let jawaban = button.target.innerHTML.split(" ")[2];
-				for (let i=0; i<3; i++) {
+				for (let i=0; i<4; i++) {
 					$(".wrapper .container").children().last().remove();
 				}
 				if (jawaban == ayatTerpilih) {
@@ -148,6 +162,13 @@ function ajaxCall(start,end,suratTerpilih) {
 			let audioTerpilih = event.data.verses[ayatTerpilih-1].audio.primary;
 			let suratTerpilih = event.data.name.transliteration.id;
 			let banyakAyat = event.data.numberOfVerses;
+
+
+			$(".wrapper .container").append(
+				`<div class="row d-flex flex-row justify-content-center">
+				${generateArab(arabTerpilih)}
+			</div>`);
+
 
 
 			$(".wrapper .container").append(`

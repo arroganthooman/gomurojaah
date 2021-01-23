@@ -33,6 +33,13 @@ const nama_surat = (nomor) => {
 	return nama;
 }
 
+// const generateArab = (indexSurat, indexAyat) => {
+// 	let res;
+// 	$.ajax({
+// 		url:`https://api.quran.sutanlab.id/surah/${indexSurat+1}/indexAyat`
+// 	})
+// }
+
 
 $(".button-tebak").click(() => {
 	var start = parseInt($("#inputGroupSelect01").val());
@@ -69,6 +76,7 @@ $(".button-tebak").click(() => {
 
 			let audioTerpilih = event.data.verses[ayatTerpilih-1].audio.primary
 			let suratTerpilih = event.data.name.transliteration.id;
+			let arabTerpilih = event.data.verses[ayatTerpilih-1].text.arab;
 			let namaSuratKedua = nama_surat(suratKedua);
 			let namaSuratKetiga = nama_surat(suratKetiga);
 			let namaSuratKeempat = nama_surat(suratKeempat);
@@ -79,12 +87,16 @@ $(".button-tebak").click(() => {
 			}
 
 			$(".wrapper .container").append(`
+				<div class="row d-flex flex-row justify-content-center mt-3"> 
+					<p dir="rtl" lang="ar" style="background-color:black; color:white;text-align:right">${arabTerpilih}</p> 
+				</div>
 				<div class="row d-flex flex-row justify-content-center">
-				<audio controls>
-			  <source src="${audioTerpilih}" type="audio/mpeg">
-			Your browser does not support the audio element.
-			</audio>
-			</div>`)
+					<audio controls>
+				  		<source src="${audioTerpilih}" type="audio/mpeg">
+						Your browser does not support the audio element.
+					</audio>
+				</div>`  
+			)
 
 			if (ayatTerpilih%4 === 0) {
 				$(".wrapper .container").append(
@@ -137,9 +149,11 @@ $(".button-tebak").click(() => {
 			$(document).on('click','.btn-secondary', function(button) {
 				let jawaban = button.target.innerHTML;
 
-				for (let i=0; i<3; i++) {
+				for (let i=0; i<4; i++) {
 					$(".wrapper .container").children().last().remove();
 				}
+
+				
 				if (jawaban == suratTerpilih) {
 					$(".wrapper .container").append(
 						`<div class="row d-flex justify-content-center">
@@ -152,8 +166,10 @@ $(".button-tebak").click(() => {
 				}
 
 				var nomorSurat = getRandom(start, end);
+				// console.log("ajax1");
 				sleep(2000).then(() => {
 					$(".wrapper .container").children().last().remove();
+					
 					ajaxCall(start,end,nomorSurat);
 				});
 				
@@ -190,11 +206,15 @@ function ajaxCall(start,end,suratTerpilih) {
 
 			let audioTerpilih = event.data.verses[ayatTerpilih-1].audio.primary
 			let suratTerpilih = event.data.name.transliteration.id;
+			let arabTerpilih = event.data.verses[ayatTerpilih-1].text.arab;
 			let namaSuratKedua = nama_surat(suratKedua);
 			let namaSuratKetiga = nama_surat(suratKetiga);
 			let namaSuratKeempat = nama_surat(suratKeempat);
 
 			$(".wrapper .container").append(`
+				<div class="row d-flex flex-row justify-content-center mt-3"> 
+					<p dir="rtl" lang="ar" style="background-color:black; color:white;text-align:right">${arabTerpilih}</p> 
+				</div>
 				<div class="row d-flex flex-row justify-content-center">
 				<audio controls>
 			  <source src="${audioTerpilih}" type="audio/mpeg">
@@ -252,7 +272,9 @@ function ajaxCall(start,end,suratTerpilih) {
 			}
 			$(document).on('click','.btn-secondary', function(button) {
 				let jawaban = button.target.innerHTML;
-					$(".wrapper .container").children().last().remove();
+					// for (let i =0; i< 3; i++){
+						$(".wrapper .container").children().last().remove();
+					// }
 				if (jawaban == suratTerpilih) {
 					$(".wrapper .container").append(
 						`<div class="row d-flex justify-content-center">

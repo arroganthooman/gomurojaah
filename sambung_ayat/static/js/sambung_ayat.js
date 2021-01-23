@@ -3,8 +3,6 @@ $(document).ready(() => {
 		url:'/api',
 		async:false,
 		success: (event) => {
-			// console.log(typeof event);
-			// event = JSON.parse(event);
 			for (let i=0; i<event.data.length; i++) {
 				$(".custom-select").append(
 					`<option value="${i}">${i+1}.${event.data[i].name.transliteration.id}</option>`);
@@ -98,6 +96,7 @@ $(".button-tebak").click(() => {
 	}
 
 	var audioTerpilih = generateAudio(idxSuratTerpilih, ayatTerpilih-1);
+	var arabTerpilih = generateArab(idxSuratTerpilih,ayatTerpilih-1)
 	var audioTerpilihJawaban = generateAudio(idxSuratTerpilih, ayatTerpilih);
 	var arabJawaban = generateArab(idxSuratTerpilih, ayatTerpilih);
 
@@ -107,6 +106,7 @@ $(".button-tebak").click(() => {
 		$(".wrapper .container").children().last().remove();
 	}
 
+	$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center"> ${arabTerpilih} </div>`);
 	$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center"> ${audioTerpilih} </div>`);
 
 	if (ayatTerpilih %2 == 0) {
@@ -122,7 +122,7 @@ $(".button-tebak").click(() => {
 	}
 
 	$(document).on('click',".jawaban", function (button) {
-		for (let i = 0; i < 5; i++) {
+		for (let i = 0; i < 6; i++) {
 			$(".wrapper .container").children().last().remove();
 		}
 
@@ -153,12 +153,14 @@ function ajaxCall(start,end) {
 
 	let audioTerpilih = generateAudio(idxSuratTerpilih, ayatTerpilih-1);
 	let audioTerpilihJawaban = generateAudio(idxSuratTerpilih, ayatTerpilih);
+	var arabTerpilih = generateArab(idxSuratTerpilih,ayatTerpilih-1)
 
 	let audioKedua = generateAudio(idxSuratKedua, ayatKedua-1);
 
 	var arabJawaban = generateArab(idxSuratTerpilih, ayatTerpilih);
 	var arabKedua = generateArab(idxSuratKedua, ayatKedua-1)
 
+	$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center"> ${arabTerpilih} </div>`);
 	$(".wrapper .container").append(`<div class="row d-flex flex-row justify-content-center"> ${audioTerpilih} </div>`);
 
 	if (ayatTerpilih %2 == 0) {
