@@ -55,6 +55,11 @@ $(".button-tebak").click(() => {
 				$(".wrapper .container").children().last().remove();
 			}
 
+			if (window.innerWidth<= 576) {
+				$(".wrapper").css("height", "auto");
+				$(".wrapper").css("margin-top", "5vh");
+			}
+
 
 			$(".wrapper .container").append(
 				`<div class="row d-flex flex-row justify-content-center">

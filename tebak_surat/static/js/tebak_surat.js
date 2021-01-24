@@ -76,6 +76,10 @@ $(".button-tebak").click(() => {
 			let namaSuratKetiga = nama_surat(suratKetiga);
 			let namaSuratKeempat = nama_surat(suratKeempat);
 
+			if (window.innerWidth<= 576) {
+				$(".wrapper").css("height", "auto");
+				$(".wrapper").css("margin-top", "5vh");
+			}
 
 			for (let i=0; i<3; i++) {
 				$(".wrapper .container").children().last().remove();

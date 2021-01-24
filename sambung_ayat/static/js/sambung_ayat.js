@@ -100,7 +100,13 @@ $(".button-tebak").click(() => {
 	var arabJawaban = generateArab(idxSuratTerpilih, ayatTerpilih);
 
 	var audioKedua = generateAudio(idxSuratKedua, ayatKedua-1);
-	var arabKedua = generateArab(idxSuratKedua, ayatKedua-1)
+	var arabKedua = generateArab(idxSuratKedua, ayatKedua-1);
+
+	if (window.innerWidth<= 576) {
+		$(".wrapper").css("height", "auto");
+		$(".wrapper").css("margin-top", "5vh");
+	}
+			
 	for (let i=0; i<3; i++) {
 		$(".wrapper .container").children().last().remove();
 	}

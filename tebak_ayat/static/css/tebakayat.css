@@ -67,7 +67,7 @@
 }
 
 @media only screen and (max-width:768px) {
-	.wrapper {
-		height: initial;
-	}
+	/*.wrapper {
+		height: auto;
+	}*/
 }
