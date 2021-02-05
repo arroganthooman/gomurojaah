@@ -2,6 +2,9 @@ $(document).ready(() => {
 	$.ajax({
 		url:'/api',
 		success: (event) => {
+			if (typeof event != 'object') {
+				event = JSON.parse(event);
+			}
 			for (let i=0; i<event.data.length; i++) {
 				$(".custom-select").append(
 					`<option value="${i}">${i+1}. ${event.data[i].name.transliteration.id}</option>`);
@@ -26,6 +29,9 @@ const nama_surat = (nomor) => {
 		url:`https://api.quran.sutanlab.id/surah/${nomor+1}`,
 		async:false,
 		success: (event) => {
+			if (typeof event != 'object') {
+				event = JSON.parse(event);
+			};
 			nama = event.data.name.transliteration.id;
 		}
 	});
@@ -51,6 +57,9 @@ $(".button-tebak").click(() => {
 	$.ajax({
 		url:`https://api.quran.sutanlab.id/surah/${suratTerpilih+1}`,
 		success: (event) => {
+			if (typeof event != 'object') {
+				event = JSON.parse(event);
+			}
 			let indexSurat = event.data.number-1;
 			ayatTerpilih = getRandom(1,event.data.numberOfVerses);
 			let suratKedua = getRandom(start, end);
@@ -147,6 +156,9 @@ function ajaxCall(start,end,suratTerpilih) {
 	$.ajax({
 		url:`https://api.quran.sutanlab.id/surah/${suratTerpilih+1}`,
 		success: (event) => {
+			if (typeof event != 'object') {
+				event = JSON.parse(event);
+			}
 			let indexSurat = event.data.number-1
 			ayatTerpilih = getRandom(1,event.data.numberOfVerses);
 			let suratKedua = getRandom(start, end);
