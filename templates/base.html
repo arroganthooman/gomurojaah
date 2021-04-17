@@ -1,47 +1,56 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="{%static 'css/style.css'%}">
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		{% block meta %}
-		{% endblock meta %}
-	</head>
-	<body style='background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(11, 10, 10, 0.203125) 0.01%, rgba(98, 98, 98, 0.429973) 0.02%, #242424 100%), url({% static "img/background.jpg" %}); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;'>
-		<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-			<a href="/" class="navbar-brand ml-3"><span class="go">Go</span><span class="mur">Muroja'ah</span></a>
-			<button class="navbar-toggler">
-				<span class="navbar-toggler-icon" data-toggle="collapse" data-target="#navbarMenu"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarMenu">
-				<ul class="navbar-nav ml-auto mr-3">
-					<li class="nav-item pl-3 pr-3">
-						<a href="/tebakAyat" class="nav-link nav-item-style">Tebak Ayat</a>
-					</li>
-					<li class="nav-item pl-3 pr-3">
-						<a href="/tebakSurat" class="nav-link nav-item-style">Tebak Surat</a>
-					</li>
-					<li class="nav-item pl-3 pr-3">
-						<a href="/sambungAyat" class="nav-link nav-item-style">Sambung Ayat</a>
-					</li>
-				</ul>
-			</div>
-			
-		</nav>
-		{% block content %}
-		{% endblock content %}
-		<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+		integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="{%static 'css/style.css'%}">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	{% block meta %}
+	{% endblock meta %}
+</head>
+
+<body
+	style='background: linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(11, 10, 10, 0.203125) 0.01%, rgba(98, 98, 98, 0.429973) 0.02%, #242424 100%), url({% static "img/background.jpg" %}); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;'>
+	<nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+		<a href="/" class="navbar-brand ml-3"><span class="go">Go</span><span class="mur">Muroja'ah</span></a>
+		<button class="navbar-toggler">
+			<span class="navbar-toggler-icon" data-toggle="collapse" data-target="#navbarMenu"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarMenu">
+			<ul class="navbar-nav ml-auto mr-3">
+				<li class="nav-item pl-3 pr-3">
+					<a href="/tebakAyat" class="nav-link nav-item-style">Tebak Ayat</a>
+				</li>
+				<li class="nav-item pl-3 pr-3">
+					<a href="/tebakSurat" class="nav-link nav-item-style">Tebak Surat</a>
+				</li>
+				<li class="nav-item pl-3 pr-3">
+					<a href="/sambungAyat" class="nav-link nav-item-style">Sambung Ayat</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	{% block content %}
+	{% endblock content %}
+	<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-	</body>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
 </body>
+</body>
+
 </html>
